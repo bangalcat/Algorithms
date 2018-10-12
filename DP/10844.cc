@@ -1,7 +1,10 @@
+
+// 동적계획법
+// 쉬운계단수 - 연속된 숫자들
+
 #include<iostream>
 #include<vector>
 using namespace std;
-
 int solve(int n){
     vector <vector<int>> dp(n,vector<int>(11,0));
     for(int i=1;i<=9;i++)
