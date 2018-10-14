@@ -1,3 +1,6 @@
+/*
+    문제이름 : 문자열의 주기 예측
+*/
 #include<iostream>
 #include<algorithm>
 #include<vector>

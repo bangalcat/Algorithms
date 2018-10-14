@@ -2,8 +2,9 @@
 #include<string.h>
 using namespace std;
 
-// 화폐 문제
+// 화폐
 // 비싼 동전부터 차례로
+// 두 동전이 2배 이하로 차이 나게 되면 DP 문제인 동전1 문제로 바뀌게 됨
 int main(){
     int t;
     int n, m;

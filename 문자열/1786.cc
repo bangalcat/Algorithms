@@ -1,3 +1,7 @@
+/* 
+    문제이름 : 찾기
+    KMP 기초
+*/
 #include<iostream>
 #include<string>
 #include<vector>

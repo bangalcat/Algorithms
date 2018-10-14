@@ -1,10 +1,9 @@
+//문제 이름 : 골드바흐의 추측
+//소수 문제
+
 #include<cstdio>
 #include<vector>
 using namespace std;
-
-//골드바흐의 추측
-//소수
-
 vector<bool> eratones(int n){
     vector<bool> arr(n+1,true);
     arr[1] = false;
