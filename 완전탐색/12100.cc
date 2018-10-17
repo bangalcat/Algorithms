@@ -1,3 +1,6 @@
+/*
+    문제 이름 : 2048(easy)
+*/
 #include <iostream>
 #include <vector>
 #include<algorithm>
