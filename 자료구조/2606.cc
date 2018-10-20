@@ -2,9 +2,11 @@
 #include <vector>
 using namespace std;
 
+// 문제 이름 : 바이러스
 //노드들은 조상 노드를 가리키도록
 // 최고 조상이 다른 조상에 포함되어있으면 
-// 두 점 주어졌을 때, 1.한 점의 조상이 다른 점의 조상에 포함
+// 두 점 주어졌을 때, 
+// 1.한 점의 조상이 다른 점의 조상에 포함
 // 2. two different ancestor node
 // 3. two same ancestor node -> ignore
 // union 시 ancestor node의 count 합계
