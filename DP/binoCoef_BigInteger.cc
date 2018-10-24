@@ -1,5 +1,7 @@
 #include<cstdio>
-
+// BigInteger 구조체 설계
+// long long 의 범위
+// 제대로 구현하면 vector로 받아서 더 큰 범위도 계산 가능
 const long long LONG_LIMIT = 1e14;
 
 struct BigInteger{

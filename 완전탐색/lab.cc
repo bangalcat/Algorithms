@@ -44,6 +44,7 @@ public:
         pick(0,0,0,map);
         return ret;
     }
+    //사다리 조작과 비슷하게 매 재귀마다 전체 맵에서 조합 수를 완
     void pick(int r, int c, int cnt, VVI& map){
         if(cnt == 3){
             ret = max(ret,totZeroCnt - getVirusCnt(map));
