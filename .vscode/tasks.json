@@ -14,7 +14,7 @@
                 "${file}",
                 "-g",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/${fileBasenameNoExtension}.a",
             ],
             "group": {
                 "kind": "build",
@@ -39,7 +39,7 @@
         },
         {
             "label":"execute",
-            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}",
+            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a",
             "group": "test"
         }
     ]
