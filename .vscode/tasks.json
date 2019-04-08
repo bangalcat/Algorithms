@@ -41,6 +41,11 @@
             "label":"execute",
             "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a",
             "group": "test"
+        },
+        {
+            "label":"executeTestInput",
+            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a < ./test.in",
+            "group": "test"
         }
     ]
 }
