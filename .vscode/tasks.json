@@ -13,6 +13,7 @@
             "args": [
                 "${file}",
                 "-g",
+                "-std=c++14",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.a",
             ],
