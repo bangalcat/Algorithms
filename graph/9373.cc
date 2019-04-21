@@ -20,48 +20,63 @@ struct Sensor
 
 int W, N;
 vector<Sensor> slist;
-vector<vector<double>> interDist;
 
 double calcInter(int s1, int s2)
 {
     int xd = slist[s1].x-slist[s2].x;
     int yd = slist[s1].y-slist[s2].y;
-    double ret = sqrt(xd*xd+yd*yd) - slist[s1].r - slist[s2].r;
+    double ret = sqrt((double)xd*xd+(double)yd*yd) - slist[s1].r - slist[s2].r;
     if(ret <0) return 0;
     return ret;
 }
 
-double prim_pq()
+struct DisjointSet
+{
+    vector<int> tree, rank;
+    DisjointSet(int v):tree(v), rank(v,1){
+        for(int i=0;i<v;++i)
+            tree[i] = i;
+    }
+    int find(int u)
+    {
+        if(tree[u] == u) return u;
+        return tree[u] = find(tree[u]);
+    }
+    void merge(int u, int v)
+    {
+        u = find(u);
+        v = find(v);
+        if(u != v) 
+        {
+            if(rank[u] > rank[v]) swap(u, v);
+            tree[u] = v;
+            if(rank[u] == rank[v]) rank[u]++;
+        }
+    }
+};
+
+vector<pair<double,pair<int,int>>> edges;
+
+double kruskal()
 {
     if(N==0) return W;
-    priority_queue<pair<double, int>> pq; 
-    vector<bool> added(N,0);
-    vector<double> minDist(N,INF);
     double ret = 0;
-    pq.push({0,0});
-    minDist[0] = 0;
-    while(!pq.empty())
+    sort(edges.begin(), edges.end());
+    //처음엔 모든 정점이 서로 분리되어 있다.
+    DisjointSet sets(N+2);
+    for(int i=0;i<edges.size();++i)
     {
-        int u = pq.top().second;
-        pq.pop();
-        if(added[u]) continue;
-        added[u] = true;
-        ret = max(ret,minDist[u]);
-        for(int v=0;v<N;++v)
-        {
-            double dist; 
-            if((slist[u].x-W/2>0)!=(slist[v].x-W/2>0))
-                dist = min(interDist[u][v], max((double)(slist[v].x-slist[v].r), (W - (double)slist[v].x)-slist[v].r));
-            else dist = max((double)(slist[v].x-slist[v].r), (W - (double)slist[v].x)-slist[v].r);
-            if(u!=v && !added[v] && minDist[v] > dist)
-            {
-                minDist[v] = dist;
-                pq.push({-minDist[v], v});
-            }
-        }
+        // 간선 (u, v)를 검사한다.
+        double cost = edges[i].first;
+        int u = edges[i].second.first; int v = edges[i].second.second;
+        if(sets.find(u) == sets.find(v)) continue;
+        sets.merge(u, v);
+        ret = max(ret, edges[i].first);
+        if(sets.find(N) == sets.find(N+1)) break;
     }
     return ret;
 }
+
 
 int main()
 {
@@ -69,24 +84,29 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        cin >> W >> N;
-        interDist = vector<vector<double>>(N,vector<double>(N,0));
+        scanf("%d %d", &W, &N);
         slist.clear();
+        edges.clear();
         for(int i=0;i<N;++i)
         {
             int x, y, r;
-            cin >> x >> y >> r;
+            scanf("%d %d %d", &x, &y, &r);
             slist.push_back({x,y,r});
         }
-        for(int i=0;i<N;++i)
-            for(int j=0;j<N;++j)
-                if(i!=j)
-                    interDist[i][j] = calcInter(i, j);
-        // auto cmp = [](Sensor s1, Sensor s2){
-            // return (s1.y == s2.y ? (s1.x == s2.x?s1.r < s2.r:s1.x<s2.x) : s1.y < s2.y);
-        // };
-        // sort(slist.begin(),slist.end(),cmp);
-        printf("%f\n",prim_pq()/2);
+        //0 is left wall, N+1 is right wall
+        for (int i = 0; i < N; ++i)
+        {
+            for(int j = 0;j<N;++j){
+                edges.push_back({calcInter(i, j),{i,j}});
+            }
+            int s1=slist[i].x - slist[i].r;
+            if(s1 < 0) s1 = 0;
+            edges.push_back({s1, {i, N}});
+            int s2 = W - slist[i].x - slist[i].r;
+            if(s2 < 0) s2 = 0;
+            edges.push_back({s2, {i, N+1}});
+        }
+        printf("%f\n", kruskal() / 2);
     }
     return 0;
 }

@@ -1,11 +1,11 @@
 /*
-    네트워크 유량
-    포드-폴커슨 알고리즘 구현
+    알고스팟 : 국책사업
 */
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <cstring>
+#include <numeric>
 
 using namespace std;
 
@@ -14,10 +14,7 @@ const int MAX_V = 1000;
 
 int V;
 
-//capactiy[u][v] : u에서 v로 보낼 수 있는 용량
-//flow[u][v] : u에서 v로 흘러들어가는 용량 (반대 방향은 음수)
 int capacity[MAX_V][MAX_V], flow[MAX_V][MAX_V];
-//flow[][]를 계산하고 총 유량을 반환한다.
 int networkFlow(int source, int sink)
 {
     //flow를 0으로 초기화한다.
@@ -47,7 +44,7 @@ int networkFlow(int source, int sink)
             break;
         //증가 경로를 통해 유량을 얼마나 보낼지 결정한다.
         int amount = INF;
-        for (int p = 0; p != source; p = parent[p])
+        for (int p = sink; p != source; p = parent[p])
             amount = min(capacity[parent[p]][p] - flow[parent[p]][p], amount);
         //증가 경로를 통해 유량을 보낸다
         for (int p = sink; p != source; p = parent[p])
@@ -60,7 +57,42 @@ int networkFlow(int source, int sink)
     return totFlow;
 }
 
+int maxProfit(int n,int m, vector<int>& profit){
+    int SRC = 0, SINK = n+m+1;
+    V = n+m+2;
+    int SUM = accumulate(profit.begin(), profit.end(),0);
+    int C = networkFlow(SRC, SINK);
+    return SUM - C;
+}
+
 int main()
 {
+    int tc;
+    cin >> tc;
+    while(tc--){
+        int n, m;
+        cin >> n >> m;
+        memset(capacity,0,sizeof(capacity));
+        vector<int> profit(n);
+        vector<int> cost(m);
+        for(int i=0;i<n;++i){
+            cin >> profit[i];
+            //from source
+            capacity[0][i+1] = profit[i];
+        }
+        for(int i=0;i<m;++i){
+            cin >> cost[i];
+            //to sink
+            capacity[n+1+i][n+m+1] = cost[i];
+        }
+        for(int i=0;i<n;++i){
+            for(int j=0;j<m;++j){
+                int need; cin >> need;
+                if(need)
+                    capacity[i+1][n+j+1] = INF;
+            }
+        }
+        cout << maxProfit(n,m,profit) << '\n';
+    }
     return 0;
 }

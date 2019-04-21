@@ -2,3 +2,4 @@
 *.in
 *.a
 .vscode/
+*-ref.cc
