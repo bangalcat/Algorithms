@@ -59,8 +59,7 @@ int networkFlow(int source, int sink)
     }
     return totFlow;
 }
-
-////// 인접 리스트를 이용한 네트워크 플로우//////////////
+////// 인접 리스트를 이용한 네트워크 플로우
 struct Edge{
     int target, capacity, flow=0;
     Edge * rev;
