@@ -1,3 +1,6 @@
+/*
+    백준 : 노트북의 주인을 찾아서
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
