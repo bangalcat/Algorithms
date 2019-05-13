@@ -40,3 +40,7 @@ int bipartiteMatch(){
     }
     return size;
 }
+int main()
+{
+    return 0;
+}

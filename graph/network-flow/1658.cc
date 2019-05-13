@@ -92,15 +92,13 @@ void makeGraph(vector<int> &cage, vector<vector<int>> &pod, vector<int> &purchas
         if(!pod[i].empty())
             addEdge(SRC, 1+pod[i][0], cage[i]);
 
-        for (int j=0;j<pod[i].size();++j)
+        if(pod[i].size()>1)
+        for (int j=0;j<pod[i].size()-1;++j)
         {
             int u = pod[i][j] + 1;
-            for (int k = j; k < pod[i].size(); ++k)
-            {
-                int v = pod[i][k] + 1;
-                //to next day
-                addEdge(u, v, INF);
-            }
+            int v = pod[i][j+1] + 1;
+            //to next day
+            addEdge(u, v, INF);
         }
     }
     for(int i=1;i<=n;++i){

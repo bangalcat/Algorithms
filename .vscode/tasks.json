@@ -47,6 +47,11 @@
             "label":"executeTestInput",
             "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a < ./test.in",
             "group": "test"
+        },
+        {
+            "label":"executeOutputToFile",
+            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a > ./input.in",
+            "group": "test"
         }
     ]
 }

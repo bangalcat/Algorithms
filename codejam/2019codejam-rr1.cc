@@ -45,7 +45,6 @@ int main()
 
         cout << "Case #";
         cout << tc << ": ";
-        cout << ans.first << ' ' << ans.second;
         cout << '\n';
     }
     return 0;
