@@ -5,11 +5,55 @@ using namespace std;
 #define grn getRandomNum
 
 int getRandomNum(int _min, int _max){
-    if(_min > _max) return _max;
+    if(_min >= _max) return _max;
     return _min + (rand()%(_max-_min));
 }
 
 int main()
+{
+    srand((unsigned int)time(NULL));
+    //1493
+    int l, w, h;
+    l = grn(1,100000);
+    w = grn(1,100000);
+    h = grn(1,100000);
+    cout << l << ' ' << w << ' ' << h << endl;
+    int n  = grn(1,19);
+    cout << n << endl;
+    for(int i=0;i<n;++i){
+        if(grn(0,2) == 0) cout << i << ' ' << 0 << endl;
+        else
+            cout << i << ' ' << grn(0,10000) << endl;
+    }
+    return 0;
+}
+
+int p2212()
+{
+    srand((unsigned int)time(NULL));
+    //2212
+    int n = grn(1,100);
+    int k = grn(1,1000);
+    cout << n << ' ' << k << endl;
+    for(int i=0;i<n;++i){
+        cout << grn(-100000,100000) <<' ';
+    }
+    return 0;
+}
+
+int p1700(){
+    //1700
+    srand((unsigned int)time(NULL));
+    int n = grn(1,10);
+    int k = grn(n,20);
+    cout << n << ' ' << k << endl;
+    for(int i=0;i<k;++i){
+        cout << grn(1,k) << ' ';
+    }
+    return 0;
+}
+
+int p1210()
 {
     //1210
     // 1<= n <= 200, 1<= m <= 20000
