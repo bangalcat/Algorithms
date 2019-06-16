@@ -4,8 +4,11 @@ using namespace std;
 
 struct RMQ{
     vector<int> tree;
-    void insert(int nd, int ndL, int ndR, int left, int right, int a){
-        
+    int length;
+    void insert(int nd, int ind, int ndl, int ndr, int a){
+        if(ind < ndl || ind > ndr) return;
+        if(ndl == ndr) {
+        }
     }
 };
 

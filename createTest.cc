@@ -11,6 +11,37 @@ int getRandomNum(int _min, int _max){
 
 int main()
 {
+    srand((unsigned int)time(NULL));
+    int t = 1;
+    int n = grn(2,8),m = grn(2,8);
+    cout << t << endl;
+    cout << n << ' '  << m << endl;
+    for(int i=0;i<n;++i){
+        for(int j=0;j<m;++j)
+            cout << grn(0,5) << ' ';
+        cout << endl;
+    }
+    return 0;
+}
+
+int p1289()
+{
+    //1289
+    int n = grn(10,10000-1);
+    cout << n << endl;
+    int a = 1;
+    for(int i=0;i<n-1;++i){
+        int b = i+1;
+        int w = grn(1,1000);
+        cout << a << ' '<< b << ' '<< w << endl;
+        if(a < b && grn(1,4) ==3)
+            a++;
+    }
+    return 0;
+}
+
+int p1210()
+{
     //1210
     // 1<= n <= 200, 1<= m <= 20000
     // 1 <= src, sink <= n 

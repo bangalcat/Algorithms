@@ -50,7 +50,7 @@
         },
         {
             "label":"executeOutputToFile",
-            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a > ./input.in",
+            "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a < ./test.in > ./output.txt",
             "group": "test"
         }
     ]
