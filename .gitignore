@@ -5,3 +5,6 @@
 *-ref.cc
 *.out
 *.exe
+.idea/
+lib/
+*.class
