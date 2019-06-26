@@ -19,7 +19,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
     }
 
     fun optimize() : Int {
-        var lo = marbles.min()!! - 1
+        var lo = marbles.max()!! - 1
         var hi = marbles.sum() + 1
         while(lo + 1 < hi) {
             val mid = (lo + hi) / 2
@@ -48,6 +48,12 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
         }
         ret.add(cnt)
         while(ret.size < M) {
+            val idx = ret.withIndex().maxBy { it.value }!!
+            ret[idx.index] = idx.value - 1
+            ret += 1
+        }
+        ret.forEach {
+            print("$it ")
         }
     }
 
