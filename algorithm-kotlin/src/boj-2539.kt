@@ -1,6 +1,9 @@
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+/**
+ * 아니 이거 맞는데 코틀린 코드만 틀림.. 입력값이 뭔가 문제가 있는듯
+ */
 fun main() = with(BufferedReader(InputStreamReader(System.`in`))){
     val (R, C) = readLine().split(' ').map { it.toInt() }
     val PC = readLine().toInt()
