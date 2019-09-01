@@ -9,16 +9,28 @@ class Vector:
         self.y = y
 
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
+        return isinstance(other, Vector) and other.x == self.x and other.y == self.y
+
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x + other.x, self.y + other.y)
+        elif isinstance(other, int):
+            return Vector(self.x + other, self.y + other)
+
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x - other.x, self.y - other.y)
+        elif isinstance(other, int):
+            return Vector(self.x - other, self.y - other)
 
     def __lt__(self, other):
         return self.x < other.x if self.x != other.x else self.y < other.y
 
-    def __add__(self, other):
-        return Vector(self.x + other.x, self.y + other.y)
-
     def __mul__(self, other):
-        return Vector(self.x * other.x, self.y * other.y)
+        if isinstance(other, Vector):
+            return Vector(self.x * other.x, self.y * other.y)
+        elif isinstance(other, int):
+            return Vector(self.x * other, self.y * other.y)
 
     def norm(self):
         """벡터의 길이"""
@@ -45,7 +57,11 @@ class Vector:
         return r * r.dot(self)
 
 
-# 벡터의 방향성을 판단하는 ccw() 함수의 구현
-# 원점에서 벡터 b가 벡터 a의 반시계 방향이면 양수, 시계 방향이면 음수
-def ccw(a, b):
-    return a.cross(b)
+def ccw(a, b, o=Vector(0, 0)) -> float:
+    """
+    :return:
+       점 o를 기준으로 벡터 b가 벡터 a의 반시계 방향이면 양수, 시계 방향이면 음수
+       평행이면 0 return
+       o는 default 값으로 (0,0)
+    """
+    return (a - o).cross(b - o)
