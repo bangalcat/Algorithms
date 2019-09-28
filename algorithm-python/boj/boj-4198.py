@@ -1,8 +1,8 @@
-# 백준 : 민균이의 계략
+# 백준 : 열차정렬
 import bisect
 
 n = int(input())
-arr = (int(x) for x in input().strip().split())
+arr = (-int(input()) for _ in range(n))
 C = []
 for num in arr:
     if C and C[-1] >= num:

@@ -1,6 +1,5 @@
-# 백준 : 민균이의 계략
+# 백준 꼬인 전깃줄
 import bisect
-
 n = int(input())
 arr = (int(x) for x in input().strip().split())
 C = []
@@ -10,4 +9,4 @@ for num in arr:
     else:
         C.append(num)
 
-print(len(C))
+print(n - len(C))

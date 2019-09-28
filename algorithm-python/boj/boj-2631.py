@@ -1,8 +1,7 @@
-# 백준 : 민균이의 계략
+# 백준 줄세우기
 import bisect
-
 n = int(input())
-arr = (int(x) for x in input().strip().split())
+arr = (int(input()) for x in range(n))
 C = []
 for num in arr:
     if C and C[-1] >= num:
@@ -10,4 +9,4 @@ for num in arr:
     else:
         C.append(num)
 
-print(len(C))
+print(n - len(C))

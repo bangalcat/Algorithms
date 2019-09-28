@@ -1,3 +1,4 @@
+# 가장 긴 증가하는 부분 수열 2
 import bisect, sys
 input = sys.stdin.readline
 n = int(input())

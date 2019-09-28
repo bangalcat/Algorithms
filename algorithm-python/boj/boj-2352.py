@@ -1,3 +1,5 @@
+# 백준 : 반도체 설계
+# 그냥 LIS
 import bisect
 n = int(input())
 arr = map(int, input().strip().split())
