@@ -25,5 +25,6 @@ def solve_dp(n, k, arr):
         pass
     return
 
+
 if __name__ == '__main__':
     solve(*inputs())
