@@ -6,11 +6,6 @@ using namespace std;
 // 1블록 = 연속된 1 블록. 0과 1 toggle 가능
 // disntinct한 1블록 개수
 
-// 111 -> 101 : 블록수 +1
-// 010 -> 000 : 블록수 -1
-// 101 -> 111 : 블록수 -1
-// 000 -> 010 : 블록수 +1
-
 struct Node {
     int prefix=0, suffix=0; // 맨 앞과 뒤의 숫자
     int val=0, sum=0;
