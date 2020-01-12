@@ -15,20 +15,18 @@
                 "-g",
                 "-std=c++14",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.a",
+                "${fileDirname}/${fileBasenameNoExtension}.a"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            } ,
+            },
             "problemMatcher": {
                 "fileLocation": [
                     "relative",
                     "${workspaceRoot}"
                 ],
                 "pattern": {
-                    // The regular expression. 
-                   //Example to match: helloWorld.c:5:3: warning: implicit declaration of function 'prinft'
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning error):\\s+(.*)$",
                     "file": 1,
                     "line": 2,
@@ -39,17 +37,17 @@
             }
         },
         {
-            "label":"execute",
+            "label": "execute",
             "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a",
             "group": "test"
         },
         {
-            "label":"executeTestInput",
+            "label": "executeTestInput",
             "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a < ./test.in",
             "group": "test"
         },
         {
-            "label":"executeOutputToFile",
+            "label": "executeOutputToFile",
             "command": "cd ${fileDirname} && ./${fileBasenameNoExtension}.a < ./test.in > ./output.txt",
             "group": "test"
         }
