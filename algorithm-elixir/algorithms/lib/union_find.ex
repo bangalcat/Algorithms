@@ -19,8 +19,12 @@ defmodule UnionFind do
     Agent.start_link(fn -> init(n) end, name: __MODULE__)
   end
 
-  def init(n) do
+  def init(n) when is_number(n) do
     0..n |> Map.new(&{&1, &1})
+  end
+
+  def init(list) when is_list(list) do
+    list |> Map.new(&{&1, &1})
   end
 
   def find(u) do
@@ -29,6 +33,10 @@ defmodule UnionFind do
 
   def merge(u, v) do
     Agent.update(__MODULE__, fn table -> do_merge(u, v, table) end)
+  end
+
+  def same_root?(u, v) do
+    find(u) == find(v)
   end
 
   def do_merge(u, v, table) do
